@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import { SITE } from '../site.config';
+import { t, localePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  image?: string;
+  alternates?: Partial<Record<Lang, string>>;
+  type?: 'website' | 'article';
+}
+const { lang, title, description, image, alternates, type = 'website' } = Astro.props;
+const s = t(lang);
+const pageTitle = title ? `${title} | ${s.siteTitle}` : s.siteTitle;
+const desc = description ?? s.siteDescription;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image ? new URL(image, Astro.site).href : undefined;
+const other: Lang = lang === 'ko' ? 'en' : 'ko';
+const otherHref = alternates?.[other] ?? localePath(other);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {alternates && Object.entries(alternates).map(([l, href]) => (
+      <link rel="alternate" hreflang={l} href={new URL(href!, Astro.site)} />
+    ))}
+    {alternates?.ko && <link rel="alternate" hreflang="x-default" href={new URL(alternates.ko, Astro.site)} />}
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    {SITE.verification.google && <meta name="google-site-verification" content={SITE.verification.google} />}
+    {SITE.verification.naver && <meta name="naver-site-verification" content={SITE.verification.naver} />}
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href={localePath(lang)}>{s.siteTitle}</a>
+      <nav>
+        <a href={SITE.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={otherHref} hreflang={other}>{s.otherLang}</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">© {new Date().getFullYear()} {SITE.author}</footer>
+  </body>
+</html>

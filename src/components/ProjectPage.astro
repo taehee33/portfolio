@@ -1,0 +1,45 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SupportBox from './SupportBox.astro';
+import { t, localePath, type Lang } from '../i18n/ui';
+
+const { project, lang } = Astro.props as { project: CollectionEntry<'projects'>; lang: Lang };
+const s = t(lang);
+const d = project.data;
+const { Content } = await render(project);
+const slug = project.id.split('/').slice(1).join('/');
+const all = await getCollection('projects');
+const alternates: Partial<Record<Lang, string>> = {};
+for (const l of ['ko', 'en'] as Lang[]) {
+  if (all.some((p) => p.id === `${l}/${slug}` && !p.data.draft)) alternates[l] = localePath(l, `/projects/${slug}/`);
+}
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: d.title,
+  description: d.summary,
+  codeRepository: d.github,
+  programmingLanguage: d.stack,
+  inLanguage: lang,
+};
+const links = [[s.demo, d.demo], [s.store, d.store], [s.download, d.download], [s.github, d.github]]
+  .filter(([, url]) => url) as [string, string][];
+---
+<Base lang={lang} title={d.title} description={d.summary} image={d.cover} alternates={alternates} type="article">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <a class="back" href={localePath(lang)}>{s.back}</a>
+  <article class="project">
+    <h1>{d.title}</h1>
+    <p class="lead">{d.summary}</p>
+    {d.status && <span class="badge">{d.status}</span>}
+    <div class="links">
+      {links.map(([label, url], i) => <a class={i === 0 ? 'btn' : 'btn ghost'} href={url} target="_blank" rel="noopener">{label}</a>)}
+    </div>
+    {d.cover && <img class="cover" src={d.cover} alt={d.title} />}
+    <div class="prose"><Content /></div>
+    <h2>{s.stack}</h2>
+    <ul class="chips">{d.stack.map((x) => <li>{x}</li>)}</ul>
+    {!d.thirdPartyIP && <SupportBox lang={lang} />}
+  </article>
+</Base>

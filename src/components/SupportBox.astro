@@ -1,0 +1,19 @@
+---
+import { SITE } from '../site.config';
+import { t, type Lang } from '../i18n/ui';
+const { lang } = Astro.props as { lang: Lang };
+const s = t(lang);
+const { toss, kakaopay, buyMeACoffee } = SITE.support;
+const ko = [[toss, '토스로 후원'], [kakaopay, '카카오페이로 후원'], [buyMeACoffee, 'Buy Me a Coffee']];
+const en = [[buyMeACoffee, 'Buy Me a Coffee'], [toss, 'Toss'], [kakaopay, 'KakaoPay']];
+const buttons = (lang === 'ko' ? ko : en).filter(([url]) => url) as [string, string][];
+---
+{buttons.length > 0 && (
+  <aside class="support">
+    <h2>{s.supportTitle}</h2>
+    <p>{s.supportBody}</p>
+    <div class="links">
+      {buttons.map(([url, label], i) => <a class={i === 0 ? 'btn' : 'btn ghost'} href={url} target="_blank" rel="noopener">{label}</a>)}
+    </div>
+  </aside>
+)}
