@@ -1,0 +1,76 @@
+---
+// GR Everyday support pages (App Store support and privacy policy URLs).
+// The text comes from the app: src/data/gr-everyday.json is exported from the GR repo's
+// Sources/Shared/AboutView.swift by scripts/legal-pages.py. Edit it there, not here.
+import Base from '../layouts/Base.astro';
+import gr from '../data/gr-everyday.json';
+
+interface Props {
+  page: 'support' | 'privacy' | 'terms';
+}
+const { page } = Astro.props;
+const base = '/gr-everyday/';
+const nav = [
+  ['support', '지원', base],
+  ['privacy', '개인정보 처리방침', `${base}privacy/`],
+  ['terms', '이용약관', `${base}terms/`],
+] as const;
+const title = page === 'support' ? `${gr.app} 지원` : page === 'privacy' ? '개인정보 처리방침' : '이용약관';
+const description =
+  page === 'support'
+    ? `${gr.app} 사용 방법과 문의`
+    : `${gr.app} ${title} (시행일 ${gr.effectiveDate})`;
+const sections = page === 'privacy' ? gr.privacy : page === 'terms' ? gr.terms : [];
+---
+<Base lang="ko" title={page === 'support' ? title : `${gr.app} ${title}`} description={description}>
+  <nav class="gr-tabs" aria-label={gr.app}>
+    {nav.map(([key, label, href]) => (
+      <a href={href} aria-current={key === page ? 'page' : undefined}>{label}</a>
+    ))}
+  </nav>
+  <article class="project gr-doc">
+    <h1>{title}</h1>
+    {page === 'support' ? (
+      <>
+        <p class="lead">RICOH GR 카메라의 사진을 iPhone·iPad·Mac으로 받고, 원격으로 촬영하고, 순간들에서 공유하는 앱이에요.</p>
+        <section class="support">
+          <h2>문의하기</h2>
+          <p>사용 중 문제가 있거나 궁금한 점이 있으면 메일을 보내 주세요. 앱의 설정 › 앱 정보 및 지원 › 문의에서 메일을 보내면 앱 버전·기기·카메라 정보가 미리 들어가요.</p>
+          <p><a class="btn" href={`mailto:${gr.email}`}>{gr.email}</a></p>
+          <p class="gr-note">순간들의 부적절한 사진·댓글은 앱에서 바로 신고할 수 있고, 메일로 알려 주셔도 24시간 안에 확인해요. 계정 삭제는 앱의 설정 › 계정 › 탈퇴에서 바로 할 수 있어요.</p>
+        </section>
+        <h2>사용 방법</h2>
+        <ul class="cards">
+          {gr.guide.map((s) => (
+            <li class="card"><h3>{s.title}</h3><p>{s.body}</p></li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <>
+        <p class="lead">시행일 {gr.effectiveDate} · {gr.operator}</p>
+        <div class="prose">
+          {sections.map((s) => (
+            <section><h2>{s.title}</h2><p>{s.body}</p></section>
+          ))}
+        </div>
+      </>
+    )}
+    <p class="gr-note">{gr.app}는 RICOH IMAGING과 제휴하지 않은 독립 앱이며, RICOH 및 GR은 각 권리자의 상표예요. 문의: <a href={`mailto:${gr.email}`}>{gr.email}</a></p>
+  </article>
+</Base>
+
+<style>
+  .gr-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 20px; }
+  .gr-tabs a {
+    text-decoration: none; font-size: 0.9rem; padding: 4px 12px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--muted);
+  }
+  .gr-tabs a[aria-current='page'] { background: var(--chip); color: var(--fg); border-color: transparent; font-weight: 600; }
+  .gr-doc .card:hover { border-color: var(--line); }
+  .gr-doc .card p { margin: 0; }
+  .gr-doc .prose p { overflow-wrap: anywhere; }
+  .gr-doc { word-break: keep-all; }
+  .gr-note { color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+  .support .btn { overflow-wrap: anywhere; }
+</style>
