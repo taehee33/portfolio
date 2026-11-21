@@ -1,0 +1,64 @@
+---
+// GR Everyday recipe code link: https://hth33-dev.vercel.app/gr-everyday/c/#GR-7KQ3XM.
+// With the app installed the link opens in the app (Universal Link). Without it, this page
+// looks the code up (Supabase recipe_code_get, the same publishable key the app ships) and
+// sends the browser on to the recipe page, /gr-everyday/r/#<data>, which lists the settings.
+// Codes: GR repo supabase/migrations/20261121040000_recipe_codes.sql.
+import Base from '../../../layouts/Base.astro';
+import gr from '../../../data/gr-everyday.json';
+---
+<Base lang="ko" title={`${gr.app} 레시피 코드`} description="GR 카메라 이미지 컨트롤 레시피 코드">
+  <article class="project gr-recipe">
+    <p class="kicker">{gr.app} 레시피 코드</p>
+    <h1 id="code">레시피 코드</h1>
+    <p class="lead" id="status">레시피를 불러오는 중이에요…</p>
+    <p class="actions">
+      <a class="btn" id="open-app" href="#">GR Everyday에서 열기</a>
+      <a class="btn ghost" href="/gr-everyday/">앱 알아보기</a>
+    </p>
+    <p class="gr-note">앱에서는 저장된 레시피 → … → 레시피 추가 → 코드·링크·QR로 가져오기에 코드를 입력해도 돼요.</p>
+  </article>
+</Base>
+
+<script>
+  const SUPABASE = 'https://rqnwgvfirkfxfawnawzf.supabase.co';
+  const KEY = 'sb_publishable_cojeybLAeRjdBFHpVxQtRA_Rz3BYm8_';
+  const $ = (id: string) => document.getElementById(id)!;
+
+  async function show() {
+    const raw = decodeURIComponent(location.hash.slice(1)).toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const code = raw.length === 8 && raw.startsWith('GR') ? raw.slice(2) : raw;
+    if (!/^[2-9A-HJKMNP-Z]{6}$/.test(code)) {
+      $('status').textContent = '코드가 올바르지 않아요. GR- 뒤 여섯 글자인지 확인해 주세요.';
+      return;
+    }
+    $('code').textContent = `GR-${code}`;
+    (document.getElementById('open-app') as HTMLAnchorElement).href = `greveryday://code#GR-${code}`;
+    try {
+      const res = await fetch(`${SUPABASE}/rest/v1/rpc/recipe_code_get`, {
+        method: 'POST',
+        headers: { apikey: KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_code: code }),
+      });
+      const payload = res.ok ? await res.json() : null;
+      if (typeof payload !== 'string' || !/^[A-Za-z0-9_-]+$/.test(payload)) {
+        $('status').textContent = '이 코드의 레시피를 찾지 못했어요. 글자를 다시 확인해 주세요.';
+        return;
+      }
+      location.replace(`/gr-everyday/r/#${payload}`);
+    } catch {
+      $('status').textContent = '레시피를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.';
+    }
+  }
+  show();
+  window.addEventListener('hashchange', show);
+</script>
+
+<style>
+  .gr-recipe { word-break: keep-all; }
+  .kicker { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+  #code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.04em; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); }
+  .gr-note { color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+</style>

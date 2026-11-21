@@ -2,10 +2,24 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["W2YU37BD6V.com.hantaehee.greveryday"],
+        "appIDs": [
+          "W2YU37BD6V.com.hantaehee.greveryday"
+        ],
         "components": [
-          { "/": "/gr-everyday/r/", "comment": "GR Everyday recipe link; the recipe is in the #fragment" },
-          { "/": "/gr-everyday/r/*" }
+          {
+            "/": "/gr-everyday/r/",
+            "comment": "GR Everyday recipe link; the recipe is in the #fragment"
+          },
+          {
+            "/": "/gr-everyday/r/*"
+          },
+          {
+            "/": "/gr-everyday/c/",
+            "comment": "GR Everyday recipe code link; the code is in the #fragment"
+          },
+          {
+            "/": "/gr-everyday/c/*"
+          }
         ]
       }
     ]
