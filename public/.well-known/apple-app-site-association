@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["W2YU37BD6V.com.hantaehee.greveryday"],
+        "components": [
+          { "/": "/gr-everyday/r/", "comment": "GR Everyday recipe link; the recipe is in the #fragment" },
+          { "/": "/gr-everyday/r/*" }
+        ]
+      }
+    ]
+  }
+}

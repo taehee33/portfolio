@@ -1,0 +1,95 @@
+---
+// GR Everyday recipe link: https://hth33-dev.vercel.app/gr-everyday/r/#<data>.
+// With the app installed, iOS/macOS open the link in the app (Universal Link, see
+// public/.well-known/apple-app-site-association) and this page never shows. Without it, this
+// page reads the recipe from the #fragment in the browser (it is never sent to the server)
+// and lists the settings to set on the camera by hand.
+// <data> = JSON, deflated (raw), base64url. Made by the GR repo's Sources/Shared/RecipeLink.swift.
+import Base from '../../../layouts/Base.astro';
+import gr from '../../../data/gr-everyday.json';
+---
+<Base lang="ko" title={`${gr.app} 레시피`} description="GR 카메라 이미지 컨트롤 레시피">
+  <article class="project gr-recipe">
+    <p class="kicker">{gr.app} 레시피</p>
+    <h1 id="name">레시피</h1>
+    <p class="lead" id="control"></p>
+    <div id="body" hidden>
+      <table class="values"><tbody id="settings"></tbody></table>
+      <section id="wb-box" hidden><h2>화이트밸런스</h2><p id="wb"></p></section>
+      <section id="memo-box" hidden><h2>메모</h2><p id="memo"></p></section>
+      <p class="gr-note" id="source"></p>
+      <p class="actions">
+        <a class="btn" id="open-app" href="#">GR Everyday에서 열기</a>
+        <a class="btn ghost" href="/gr-everyday/">앱 알아보기</a>
+      </p>
+      <p class="gr-note">카메라의 이미지 컨트롤 메뉴에서 맨 위 항목을 고르고, 위 값대로 맞추면 같은 레시피로 찍을 수 있어요. 앱이 있으면 Bluetooth로 Custom 칸에 바로 넣을 수 있어요.</p>
+    </div>
+    <p id="problem" class="gr-note" hidden>레시피를 읽지 못했어요. 링크가 중간에 잘렸을 수 있어요. 보낸 사람에게 다시 받아 주세요.</p>
+    <p class="gr-note">{gr.app}는 RICOH IMAGING과 제휴하지 않은 독립 앱이며, RICOH 및 GR은 각 권리자의 상표예요.</p>
+  </article>
+</Base>
+
+<script>
+  const $ = (id: string) => document.getElementById(id)!;
+
+  function bytes(b64url: string): Uint8Array {
+    const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (b64url.length % 4)) % 4);
+    return Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  }
+
+  async function read(fragment: string) {
+    const stream = new Blob([bytes(fragment)]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+    const p = JSON.parse(await new Response(stream).text());
+    if (p.v !== 1 || typeof p.n !== 'string') throw new Error('format');
+    return p;
+  }
+
+  function row(name: string, value: string) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    const td = document.createElement('td');
+    th.textContent = name;
+    td.textContent = value;
+    tr.append(th, td);
+    return tr;
+  }
+
+  async function show() {
+    const fragment = location.hash.slice(1);
+    try {
+      if (!fragment) throw new Error('empty');
+      const p = await read(fragment);
+      document.title = `${p.n} | GR Everyday 레시피`;
+      $('name').textContent = p.n;
+      $('control').textContent = typeof p.t === 'string' ? p.t : `이미지 컨트롤 코드 ${p.c}`;
+      const settings = $('settings');
+      for (const s of Array.isArray(p.s) ? p.s.slice(0, 40) : []) {
+        if (Array.isArray(s) && s.length === 2) settings.append(row(String(s[0]), String(s[1])));
+      }
+      if (typeof p.d === 'string') settings.append(row('HDF', p.d));
+      if (typeof p.w === 'string') { $('wb').textContent = p.w; $('wb-box').hidden = false; }
+      if (typeof p.m === 'string') { $('memo').textContent = p.m; $('memo-box').hidden = false; }
+      const source = [p.a && `올린 사람 ${p.a}`, p.k && `찍은 카메라 ${p.k}`].filter(Boolean).join(' · ');
+      $('source').textContent = source;
+      (document.getElementById('open-app') as HTMLAnchorElement).href = `greveryday://recipe#${fragment}`;
+      $('body').hidden = false;
+    } catch {
+      $('problem').hidden = false;
+    }
+  }
+  show();
+  window.addEventListener('hashchange', show);
+</script>
+
+<style>
+  .gr-recipe { word-break: keep-all; }
+  .kicker { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+  .values { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  /* Rows are added by the script, so they don't carry Astro's scoping attribute. */
+  .values :global(th), .values :global(td) { padding: 8px 4px; border-bottom: 1px solid var(--line); text-align: left; }
+  .values :global(th) { font-weight: 500; color: var(--muted); }
+  .values :global(td) { text-align: right; font-variant-numeric: tabular-nums; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); }
+  .gr-note { color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+</style>
