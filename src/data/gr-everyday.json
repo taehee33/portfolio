@@ -1,6 +1,7 @@
 {
   "app": "GR Everyday",
   "operator": "GR Everyday 개발자",
+  "operatorEn": "GR Everyday Developer",
   "email": "hth33.dev@gmail.com",
   "effectiveDate": "2026-11-21",
   "guide": [
@@ -22,11 +23,11 @@
     },
     {
       "title": "USB로 연결",
-      "body": "USB-C 케이블이나 USB 카메라 어댑터로 카메라를 연결하고 켠 뒤 카메라 탭의 USB로 연결을 눌러 주세요. USB로는 사진 보기와 저장만 돼요."
+      "body": "USB-C 케이블로 카메라를 연결하고 켠 뒤 카메라 탭의 USB로 연결을 눌러 주세요. USB로는 사진 보기와 저장만 돼요. iPhone·iPad에서는 카메라와 USB-C로 직접 연결하는 게 아직 안 돼요. SD 카드 리더기에 카메라의 SD 카드를 넣어 사진 앱이나 파일 앱으로 가져와 주세요."
     },
     {
       "title": "연결이 안 될 때",
-      "body": "카메라를 껐다 켠 뒤 다시 연결해 보세요. 그래도 안 되면 설정 → 앱 정보 및 지원 → 연결 진단에서 원인을 확인해 주세요. 예전 페어링 정보가 남아 등록이 안 되면, iPhone·iPad·Mac의 Bluetooth 설정에서 그 GR 카메라를 지운 뒤 다시 등록해 주세요."
+      "body": "카메라를 껐다 켠 뒤 다시 연결해 보세요. 그래도 안 되면 설정 → 앱 정보 및 지원 → 연결 진단에서 원인을 확인해 주세요. 예전 페어링 정보가 남아 등록이 안 되면 세 곳을 모두 지운 뒤 다시 등록해 주세요: iPhone·iPad·Mac의 Bluetooth 설정에서 GR_로 시작하는 카메라, iPhone·iPad·Mac의 Wi-Fi 설정에서 GR_로 시작하는 네트워크, 카메라 메뉴 → 무선 통신 설정의 페어링된 기기 목록에 남은 이 기기."
     }
   ],
   "privacy": [
@@ -56,7 +57,7 @@
     },
     {
       "title": "권한",
-      "body": "Bluetooth는 카메라 등록과 Wi-Fi 켜기에, 로컬 네트워크와 Wi-Fi 연결은 카메라와 통신하는 데, 사진 접근은 고른 사진을 사진 앱에 저장하는 데 써요. 순간들 › 탐색의 '내 주변'을 누르면 지금 위치로 지도를 옮기고 주변 사진을 찾는 데만 쓰며 위치를 저장하지 않아요. Mac에서는 연결할 Wi-Fi 이름을 확인하기 위해 위치 권한을 요청할 수 있으며, 위치는 저장하지 않아요."
+      "body": "Bluetooth는 카메라 등록과 Wi-Fi 켜기에, 로컬 네트워크와 Wi-Fi 연결은 카메라와 통신하는 데, 사진 접근은 고른 사진을 사진 앱에 저장하는 데 써요. 순간들 › 피드의 '내 주변'을 누르면 지금 위치로 지도를 옮기고 주변 사진을 찾는 데만 쓰며 위치를 저장하지 않아요. Mac에서는 연결할 Wi-Fi 이름을 확인하기 위해 위치 권한을 요청할 수 있으며, 위치는 저장하지 않아요."
     },
     {
       "title": "보관과 삭제",
@@ -112,5 +113,117 @@
       "title": "약관의 변경",
       "body": "약관이 바뀌면 앱 업데이트와 함께 이 화면에 알려요."
     }
-  ]
+  ],
+  "en": {
+    "guide": [
+      {
+        "title": "Connecting for the First Time",
+        "body": "On the camera, open Menu → Wireless Settings → Bluetooth → Pairing. In GR Everyday's Camera tab, tap Register Camera and choose your camera from the list. When a prompt appears on your iPhone, iPad, or Mac, enter the code shown on the camera's screen."
+      },
+      {
+        "title": "Turn on the camera without extending the lens",
+        "body": "With the camera off, press and hold the Playback (▶) button to turn it on in playback mode without extending the lens. This protects the lens when you're only transferring photos or connecting, and you can still connect as usual."
+      },
+      {
+        "title": "Getting Photos",
+        "body": "Once connected, the camera's photos appear in the Library tab. Tap Select, pick photos, then tap Save to Photos. Turn on Auto-Save New Photos in Settings to get photos you haven't received yet every time you connect. Photos on the camera are never deleted."
+      },
+      {
+        "title": "Remote Shooting",
+        "body": "In Remote Shooting on the Camera tab, you can press the shutter while viewing the camera's screen. You can also change settings like exposure and image control there."
+      },
+      {
+        "title": "Connect via USB",
+        "body": "Connect the camera with a USB-C cable, turn it on, then tap Connect via USB in the Camera tab. Over USB you can only view and save photos. Connecting the camera directly over USB-C doesn't work on iPhone or iPad yet. Put the camera's SD card in an SD card reader and import with the Photos or Files app."
+      },
+      {
+        "title": "If You Can't Connect",
+        "body": "Turn the camera off and on, then connect again. If that doesn't help, check the cause in Settings → About & Support → Connection Diagnostics. If old pairing info prevents registration, remove it in all three places and register again: the camera starting with GR_ in iPhone, iPad, or Mac's Bluetooth settings, the network starting with GR_ in iPhone, iPad, or Mac's Wi-Fi settings, and this device in the paired devices list under Camera menu → Wireless Settings."
+      }
+    ],
+    "privacy": [
+      {
+        "title": "Operator and Scope",
+        "body": "GR Everyday is a camera photo transfer app operated by GR Everyday Developer. This policy covers the camera features, the Moments (photo sharing) service, and support inquiries. Inquiries and privacy requests: hth33.dev@gmail.com"
+      },
+      {
+        "title": "Camera features are processed on your device",
+        "body": "We process the registered camera's Bluetooth name, identifier, and model name; the camera Wi-Fi name and password; the camera's photo list, file names, capture times, and file sizes; photo and video originals and previews; and shooting info (exposure mode, image control, etc.). This information and these files travel directly between the camera and iPhone, iPad, or Mac and are not sent to the operator's servers. To reconnect and show lists without the camera, camera info, photo lists, thumbnails, shooting records, and saved status are stored on your device."
+      },
+      {
+        "title": "Shooting stats records kept in iCloud",
+        "body": "If Settings › Shooting Stats Records › Storage is set to iCloud, shooting stats records (photo file names, capture times, shooting info, and the date a photo was deleted from the card) are kept in your own iCloud provided by Apple (CloudKit private database), so iPhone, iPad, and Mac signed in with the same Apple ID show the same stats. This data is kept under Apple's iCloud terms and privacy policy, and the operator can neither see nor receive it. Changing the storage to 'This Device Only' stops uploading, and Clear Deleted Photo Records also deletes the records in iCloud. You can also delete them in your device's iCloud storage management."
+      },
+      {
+        "title": "Information collected in Moments",
+        "body": "Moments is available only when you're signed in. When you sign in, we receive the account identifier and email address provided by Apple or Google (a relay address if you choose Apple's Hide My Email). We also keep what you enter or upload while using it: username, display name, profile photo, profile links (Instagram, website), cameras you use, uploaded photos (reduced copies and previews for sharing), descriptions, the shooting info you chose to share (camera, exposure, image control, capture date), the shooting location you chose to share (coordinates and region name), comments, likes, follows, saved recipes, recipe codes you created (the code and its recipe settings), reports and blocks, and upload and sharing records. EXIF and other metadata are removed from uploaded photo files, and shooting info and location are stored only for photos where you chose to share them."
+      },
+      {
+        "title": "Purpose and Visibility",
+        "body": "Used only to run the service: verifying accounts, posting and sharing photos, providing features like comments, likes, and follows, applying upload limits, handling reports, and restricting use. Your username, display name, profile, photos shared in Moments with their descriptions, shooting info, and location, and your comments are visible to other users. If you create a recipe code, anyone who knows the code can see its recipe settings. Your email address isn't shown to other users. We don't use advertising, analytics, or tracking tools, and we don't sell personal information or use it for ads."
+      },
+      {
+        "title": "Service Providers",
+        "body": "Moments data is stored and processed with these providers: Supabase Inc. (account and post database, servers in Seoul, South Korea), Cloudflare, Inc. (photo file storage and delivery, Cloudflare data centers in the US and elsewhere), and Apple Inc. and Google LLC (sign-in verification). Data is transferred over the internet when you upload or view photos and kept until you delete it or your account. If you don't want data transferred abroad, you can stop using Moments or delete your account and keep using the camera features."
+      },
+      {
+        "title": "Permissions",
+        "body": "Bluetooth is used to register the camera and turn on its Wi-Fi; Local Network and Wi-Fi to communicate with the camera; and photo access to save the photos you pick to Photos. When you tap 'Near Me' in Moments › Feed, your current location is used only to move the map and find nearby photos, and it isn't stored. On Mac, the app may ask for location permission to read the name of the Wi-Fi network to join; the location isn't stored."
+      },
+      {
+        "title": "Retention and Deletion",
+        "body": "Information stored on your device is deleted when you clear the photo list or downloaded videos, or remove camera info, in Settings. Deleting the app removes everything stored on the device (iCloud shooting stats records are deleted separately as described above). Photos saved to Photos or a save folder are yours to manage. You can delete photos and comments you posted in Moments at any time, and Settings › Account › Delete Account immediately deletes your account, profile, posted photos, comments, likes, follows, recipe codes, and report and block records. Photos whose upload didn't finish are deleted automatically after a day."
+      },
+      {
+        "title": "Your Rights",
+        "body": "You can view, correct, or delete your information or ask us to stop processing it at any time. Most of this can be done right away in the app with Edit Profile, deleting photos, or Delete Account; send other requests to hth33.dev@gmail.com and we'll handle them without delay. Children under 14 can't sign up for Moments."
+      },
+      {
+        "title": "When You Contact Us",
+        "body": "If you contact us by email, your email address, message, and the diagnostics included in the email (app version, device model, OS version, camera model) are used only to answer you and are deleted without delay once handled."
+      },
+      {
+        "title": "Changes to This Policy",
+        "body": "If this policy changes, we'll announce it on this screen with an app update."
+      }
+    ],
+    "terms": [
+      {
+        "title": "Service and Operator",
+        "body": "GR Everyday Developer is made and operated by GR Everyday. The current version has no ads. Contact: hth33.dev@gmail.com"
+      },
+      {
+        "title": "Scope of Use",
+        "body": "GR Everyday is an independent app that helps you view, save, and remotely shoot photos and videos with compatible RICOH GR cameras, and share photos in Moments. It isn't affiliated with RICOH IMAGING; RICOH and GR are trademarks of their respective owners. Features and connection methods may vary by camera model, firmware, and device OS."
+      },
+      {
+        "title": "Your Files and Responsibility",
+        "body": "Access only cameras and files you own or have permission to use. Rights to photos and videos remain with their original owners, and the operator has no rights to those files. Saving copies the selected originals to your device; saving an item again may create a duplicate."
+      },
+      {
+        "title": "Moments Account",
+        "body": "Moments is used by signing in with an Apple or Google account, and only people 14 or older can sign up. You must agree to these terms and the privacy policy when you start. Accounts are for your use only, and you can't use a username or profile that impersonates someone else. You can delete your account anytime in Settings › Account."
+      },
+      {
+        "title": "Content You Post",
+        "body": "Post only photos you took or have the right to post. Rights to the photos, descriptions, and comments you post remain with you. However, you grant the operator a free license to use them to the extent needed to show them to other users and run the service in Moments (resizing, creating previews, displaying, delivering). This license ends when you delete the photo or your account."
+      },
+      {
+        "title": "Prohibited Content and Conduct",
+        "body": "Moments doesn't tolerate objectionable or harmful content or users. You can't post pornography or sexual content, violent or gory content, hate, discrimination, or harassment, photos that invade others' privacy or were taken without consent, content that infringes copyright or other rights, illegal activity, ads or spam, or impersonation. Such content is removed without notice, and users who post it may have their use restricted or their account deleted."
+      },
+      {
+        "title": "Reporting and Blocking",
+        "body": "You can report inappropriate photos or comments and block users you don't want to see. Photos and comments from people you block are hidden. When a report comes in, the operator reviews it within 24 hours, removes offending content, and restricts the user who posted it. Content with many reports may be hidden from everyone even before review."
+      },
+      {
+        "title": "Limitation of Liability",
+        "body": "The app is provided as is. The operator works to keep it running reliably but doesn't guarantee against connection failures or interrupted transfers due to camera, device, or network conditions. Before deleting important photos from the camera, make sure they've been saved. Users who post content in Moments are responsible for it."
+      },
+      {
+        "title": "Changes to These Terms",
+        "body": "If these terms change, we'll announce it on this screen with an app update."
+      }
+    ]
+  }
 }
