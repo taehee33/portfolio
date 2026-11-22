@@ -25,13 +25,18 @@ import gr from '../../../data/gr-everyday.json';
 </Base>
 
 <script>
-  import { chosenLang, paint, type RecipeLang, type UIKey } from '../../../scripts/gr-recipe-lang';
+  import { chosenLang, paint as paintPage, say, type RecipeLang, type UIKey } from '../../../scripts/gr-recipe-lang';
 
   const SUPABASE = 'https://rqnwgvfirkfxfawnawzf.supabase.co';
   const KEY = 'sb_publishable_cojeybLAeRjdBFHpVxQtRA_Rz3BYm8_';
   const $ = (id: string) => document.getElementById(id)!;
 
   let lang: RecipeLang = chosenLang();
+
+  function paint(l: RecipeLang, onSwitch: (l: RecipeLang) => void) {
+    paintPage(l, onSwitch);
+    document.title = say(l, 'code');
+  }
 
   /// The status line's message; the language switch redraws it. A code once read replaces
   /// the title, which is then no longer translated.

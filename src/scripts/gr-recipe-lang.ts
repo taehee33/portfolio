@@ -5,13 +5,13 @@
 // in place. To add a language, add it to `recipeLangs`, `match`, `ui` and `values` below.
 import { t, localePath } from '../i18n/ui';
 
-export const recipeLangs = { ko: '한국어', en: 'English' } as const;
+export const recipeLangs = { ko: '한국어', en: 'English', ja: '日本語' } as const;
 export type RecipeLang = keyof typeof recipeLangs;
 
 const KEY = 'gr-everyday-lang';
 
 /// Browser language prefix → page language. Anything else reads in English.
-const match: Record<string, RecipeLang> = { ko: 'ko', en: 'en' };
+const match: Record<string, RecipeLang> = { ko: 'ko', en: 'en', ja: 'ja' };
 
 export function chosenLang(): RecipeLang {
   try {
@@ -76,6 +76,28 @@ const ui = {
     offline: "Couldn't load the recipe. Check your internet connection.",
     codeHowTo: 'In the app, you can also enter the code in Saved Recipes → … → Add Recipe → Import from Code, Link, or QR.',
   },
+  ja: {
+    language: '言語',
+    recipe: 'GR Everyday レシピ',
+    recipeTitle: 'レシピ',
+    controlCode: 'イメージコントロール コード {x}',
+    whiteBalance: 'ホワイトバランス',
+    memo: 'メモ',
+    author: '投稿者 {x}',
+    camera: '撮影したカメラ {x}',
+    openApp: 'GR Everydayで開く',
+    aboutApp: 'アプリについて',
+    howTo: 'カメラのイメージコントロールメニューで一番上の項目を選び、上の値に合わせると同じレシピで撮影できます。アプリがあれば、BluetoothでCustom枠に直接入れられます。',
+    unreadable: 'レシピを読み取れませんでした。リンクが途中で切れている可能性があります。送った人にもう一度送ってもらってください。',
+    disclaimer: 'GR EverydayはRICOH IMAGINGと提携していない独立したアプリです。RICOHおよびGRは各権利者の商標です。',
+    code: 'GR Everyday レシピコード',
+    codeTitle: 'レシピコード',
+    loading: 'レシピを読み込んでいます…',
+    badCode: 'コードが正しくありません。GR- の後ろの6文字か確認してください。',
+    noCode: 'このコードのレシピが見つかりませんでした。文字をもう一度確認してください。',
+    offline: 'レシピを読み込めませんでした。インターネット接続を確認してください。',
+    codeHowTo: 'アプリでは、保存したレシピ → … → レシピを追加 → コード・リンク・QRから読み込む にコードを入力することもできます。',
+  },
 } satisfies Record<RecipeLang, Record<string, string>>;
 
 export type UIKey = keyof typeof ui.ko;
@@ -118,6 +140,36 @@ const values: Partial<Record<RecipeLang, { names: Record<string, string>; patter
       [/^\? \((\d+)번\)$/, '? (#$1)'],
     ],
   },
+  ja: {
+    names: {
+      // Image controls.
+      '스탠다드': 'スタンダード', '비비드': 'ビビッド', '모노톤': 'モノトーン', '소프트 모노톤': 'ソフトモノトーン',
+      '하드 모노톤': 'ハードモノトーン', '하이 콘트라스트 흑백': 'ハイコントラスト白黒', '포지티브 필름': 'ポジフィルム調',
+      '블리치 바이패스': 'ブリーチバイパス', '복고풍': 'レトロ', 'HDR 톤': 'HDR調', '크로스 프로세스': 'クロスプロセス',
+      '네거티브 필름': 'ネガフィルム調', '시네마톤 (옐로)': 'シネマ調(イエロー)', '시네마톤 (그린)': 'シネマ調(グリーン)',
+      '솔리드': 'ソリッド', '소프트': 'ソフト', '하이 콘트라스트': 'ハイコントラスト', '그레이니': 'グレイニー',
+      // Settings.
+      '채도': '彩度', '색상': '色相', '키': 'キー', '콘트라스트': 'コントラスト',
+      '콘트라스트(하이라이트)': 'コントラスト(ハイライト)', '콘트라스트(섀도)': 'コントラスト(シャドー)',
+      '샤프니스': 'シャープネス', '조색': '調色', '색조': '色調', 'HDR톤 효과': 'HDR調効果',
+      '음영': 'シェーディング', '명료도': '明瞭度', '필터 효과': 'フィルター効果', '입자감': '粒状感',
+      '끄기': 'オフ', '켜기': 'オン',
+      // HDF.
+      '꺼짐': 'オフ', '켜짐': 'オン', '레드 필터': 'レッドフィルター',
+      // White balance.
+      '자동': 'オート', '자동(따뜻한 색감)': 'オート(暖色)', '자동(흰색 우선)': 'オート(白優先)',
+      '태양광': '太陽光', '그늘': '日陰', '흐림': '曇天', '형광등': '蛍光灯',
+      '형광등(주광색)': '蛍光灯(昼光色)', '형광등(주백색)': '蛍光灯(昼白色)',
+      '형광등(백색)': '蛍光灯(白色)', '형광등(온백색)': '蛍光灯(温白色)',
+      '백열등': '白熱灯', '멀티 패턴 자동': 'マルチパターンオート', '수동': 'マニュアル', '색온도': '色温度',
+    },
+    patterns: [
+      [/^색온도 (\d+)K$/, '色温度 $1K'],
+      [/^알 수 없음 \(코드 (-?\d+)\)$/, '不明 (コード $1)'],
+      [/^코드 (-?\d+)$/, 'コード $1'],
+      [/^\? \((\d+)번\)$/, '? ($1番)'],
+    ],
+  },
 };
 
 /// A value from the recipe in the reader's language; unknown ones as they are. White balance
@@ -133,11 +185,12 @@ export function value(lang: RecipeLang, text: string): string {
   }).join(' · ');
 }
 
-/// The support page in that language (/gr-everyday/ko/, /gr-everyday/en/).
+/// The support page in that language (/gr-everyday/ko/, /gr-everyday/en/, /gr-everyday/ja/).
 export const appPage = (lang: RecipeLang) => `/gr-everyday/${lang}/`;
 
 /// Fills the static parts of the page: every [data-t] element, <html lang>, the language
-/// switch (#gr-langs) and the site header, which follows the language where the site has it.
+/// switch (#gr-langs) and the site header, which follows the language where the site has it
+/// (English for Japanese, as on the /gr-everyday/ja/ pages).
 export function paint(lang: RecipeLang, onSwitch: (lang: RecipeLang) => void) {
   document.documentElement.lang = lang;
   for (const el of document.querySelectorAll<HTMLElement>('[data-t]')) el.textContent = say(lang, el.dataset.t as UIKey);
