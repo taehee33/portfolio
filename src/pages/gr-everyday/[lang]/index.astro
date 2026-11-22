@@ -2,8 +2,8 @@
 import GrEverydayPage from '../../../components/GrEverydayPage.astro';
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'ko' } }, { params: { lang: 'en' } }];
+  return [{ params: { lang: 'ko' } }, { params: { lang: 'en' } }, { params: { lang: 'ja' } }];
 }
-const { lang } = Astro.params as { lang: 'ko' | 'en' };
+const { lang } = Astro.params as { lang: 'ko' | 'en' | 'ja' };
 ---
 <GrEverydayPage page="support" lang={lang} />

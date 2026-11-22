@@ -1,10 +1,10 @@
 ---
 // /gr-everyday/: the App Store's support URL. Sends the visitor to the page in their
-// browser's language (/gr-everyday/ko/ or /gr-everyday/en/), with plain links as a fallback.
+// browser's language (/gr-everyday/ko/, /gr-everyday/en/ or /gr-everyday/ja/), with plain links as a fallback.
 import Base from '../../layouts/Base.astro';
 import gr from '../../data/gr-everyday.json';
 ---
-<Base lang="ko" title={`${gr.app} 지원 · Support`} alternates={{ ko: '/gr-everyday/ko/', en: '/gr-everyday/en/' }}>
+<Base lang="ko" title={`${gr.app} 지원 · Support`} alternates={{ ko: '/gr-everyday/ko/', en: '/gr-everyday/en/', ja: '/gr-everyday/ja/' }}>
   <script is:inline>
     (function () {
       var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en']);
@@ -13,6 +13,7 @@ import gr from '../../data/gr-everyday.json';
         var l = String(langs[i]).toLowerCase();
         if (l.indexOf('ko') === 0) { pick = 'ko'; break; }
         if (l.indexOf('en') === 0) { pick = 'en'; break; }
+        if (l.indexOf('ja') === 0) { pick = 'ja'; break; }
       }
       location.replace('/gr-everyday/' + pick + '/' + location.hash);
     })();
@@ -22,6 +23,7 @@ import gr from '../../data/gr-everyday.json';
     <ul>
       <li><a href="/gr-everyday/ko/" hreflang="ko" lang="ko">한국어</a></li>
       <li><a href="/gr-everyday/en/" hreflang="en" lang="en">English</a></li>
+      <li><a href="/gr-everyday/ja/" hreflang="ja" lang="ja">日本語</a></li>
     </ul>
   </article>
 </Base>

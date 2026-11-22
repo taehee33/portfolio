@@ -1,23 +1,35 @@
 ---
 // GR Everyday support pages (App Store support and privacy policy URLs).
-// /gr-everyday/ko/…, /gr-everyday/en/… (src/pages/gr-everyday/[lang]/). The text comes from the app: src/data/gr-everyday.json is exported from the GR repo's
+// /gr-everyday/ko/…, /gr-everyday/en/…, /gr-everyday/ja/… (src/pages/gr-everyday/[lang]/). The text comes from the app: src/data/gr-everyday.json is exported from the GR repo's
 // Sources/Shared/AboutView.swift by scripts/legal-pages.py. Edit it there, not here.
 import Base from '../layouts/Base.astro';
 import gr from '../data/gr-everyday.json';
 
 interface Props {
   page: 'support' | 'privacy' | 'terms';
-  lang?: 'ko' | 'en';
+  lang?: 'ko' | 'en' | 'ja';
 }
 const { page, lang = 'ko' } = Astro.props;
 const en = lang === 'en';
-const doc = en ? gr.en : gr;
-const operator = en ? gr.operatorEn : gr.operator;
+const doc = lang === 'ko' ? gr : gr[lang];
+const operator = lang === 'ko' ? gr.operator : gr[lang].operator;
 /// Every language's page at /gr-everyday/<lang>/…; /gr-everyday/ picks one by the browser.
-const pageLangs = { ko: '한국어', en: 'English' } as const;
+const pageLangs = { ko: '한국어', en: 'English', ja: '日本語' } as const;
 const path = (l: string, p: Props['page']) => `/gr-everyday/${l}/${p === 'support' ? '' : `${p}/`}`;
 const here = { support: path(lang, 'support'), privacy: path(lang, 'privacy'), terms: path(lang, 'terms') };
-const words = en
+const words = lang === 'ja'
+  ? {
+      support: 'サポート', privacy: 'プライバシーポリシー', terms: '利用規約',
+      supportTitle: `${gr.app} サポート`, supportDescription: `${gr.app}の使い方とお問い合わせ`,
+      effective: '施行日',
+      lead: 'RICOH GRカメラの写真をiPhone・iPad・Macで受け取り、リモートで撮影し、モーメントで共有するアプリです。',
+      contact: 'お問い合わせ',
+      contactBody: '使用中に問題があったり、わからないことがあったりする場合は、メールでお知らせください。アプリの 設定 › アプリ情報とサポート › お問い合わせ からメールを送ると、アプリのバージョン・デバイス・カメラの情報が入力された状態になります。',
+      contactNote: 'モーメントの不適切な写真・コメントはアプリからすぐに報告でき、メールでお知らせいただいた場合も24時間以内に確認します。アカウントの削除は、アプリの 設定 › アカウント › 退会 からすぐに行えます。',
+      guide: '使い方',
+      footer: `${gr.app}はRICOH IMAGINGと提携していない独立したアプリです。RICOHおよびGRは各権利者の商標です。お問い合わせ:`,
+    }
+  : en
   ? {
       support: 'Support', privacy: 'Privacy Policy', terms: 'Terms of Use',
       supportTitle: `${gr.app} Support`, supportDescription: `How to use ${gr.app}, and how to reach us`,
@@ -51,10 +63,11 @@ const description =
 const sections = page === 'privacy' ? doc.privacy : page === 'terms' ? doc.terms : [];
 ---
 <Base
-  lang={lang}
+  lang={lang === 'ja' ? 'en' : lang}
+  docLang={lang}
   title={page === 'support' ? title : `${gr.app} ${title}`}
   description={description}
-  alternates={{ ko: path('ko', page), en: path('en', page) }}
+  alternates={{ ko: path('ko', page), en: path('en', page), ja: path('ja', page) }}
 >
   <div class="gr-bar">
     <nav class="gr-tabs" aria-label={gr.app}>
@@ -62,7 +75,7 @@ const sections = page === 'privacy' ? doc.privacy : page === 'terms' ? doc.terms
         <a href={href} aria-current={key === page ? 'page' : undefined}>{label}</a>
       ))}
     </nav>
-    <nav class="gr-langs" aria-label={en ? 'Language' : '언어'}>
+    <nav class="gr-langs" aria-label={lang === 'ko' ? '언어' : lang === 'ja' ? '言語' : 'Language'}>
       {Object.entries(pageLangs).map(([l, label]) => (
         <a href={path(l, page)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{label}</a>
       ))}
