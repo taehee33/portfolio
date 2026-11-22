@@ -39,7 +39,7 @@ const ui = {
     controlCode: '이미지 컨트롤 코드 {x}',
     whiteBalance: '화이트밸런스',
     memo: '메모',
-    sample: '견본 사진',
+    sample: '샘플 사진',
     author: '올린 사람 {x}',
     camera: '찍은 카메라 {x}',
     openApp: 'GR Everyday에서 열기',
