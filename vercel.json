@@ -32,8 +32,33 @@
       "permanent": true
     },
     {
-      "source": "/en/gr-everyday/:path*",
-      "destination": "/gr-everyday/en/:path*",
+      "source": "/en/gr-everyday/",
+      "destination": "/gr-everyday/en/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday",
+      "destination": "/gr-everyday/en/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday/privacy/",
+      "destination": "/gr-everyday/en/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday/privacy",
+      "destination": "/gr-everyday/en/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday/terms/",
+      "destination": "/gr-everyday/en/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday/terms",
+      "destination": "/gr-everyday/en/terms/",
       "permanent": true
     }
   ]
