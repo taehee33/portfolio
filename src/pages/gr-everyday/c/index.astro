@@ -4,35 +4,55 @@
 // looks the code up (Supabase recipe_code_get, the same publishable key the app ships) and
 // sends the browser on to the recipe page, /gr-everyday/r/#<data>, which lists the settings.
 // Codes: GR repo supabase/migrations/20261121040000_recipe_codes.sql.
+// The page reads in the reader's language, picked when it opens (src/scripts/gr-recipe-lang.ts).
 import Base from '../../../layouts/Base.astro';
 import gr from '../../../data/gr-everyday.json';
 ---
-<Base lang="ko" title={`${gr.app} 레시피 코드`} description="GR 카메라 이미지 컨트롤 레시피 코드">
+<Base lang="ko" title={`${gr.app} 레시피 코드 · Recipe Code`} description="GR 카메라 이미지 컨트롤 레시피 코드 · A RICOH GR image control recipe code">
   <article class="project gr-recipe">
-    <p class="kicker">{gr.app} 레시피 코드</p>
-    <h1 id="code">레시피 코드</h1>
-    <p class="lead" id="status">레시피를 불러오는 중이에요…</p>
+    <div class="gr-top">
+      <p class="kicker" data-t="code">{gr.app} 레시피 코드</p>
+      <nav class="gr-langs" id="gr-langs" aria-label="언어"></nav>
+    </div>
+    <h1 id="code" data-t="codeTitle">레시피 코드</h1>
+    <p class="lead" id="status" data-t="loading">레시피를 불러오는 중이에요…</p>
     <p class="actions">
-      <a class="btn" id="open-app" href="#">GR Everyday에서 열기</a>
-      <a class="btn ghost" href="/gr-everyday/">앱 알아보기</a>
+      <a class="btn" id="open-app" href="#" data-t="openApp">GR Everyday에서 열기</a>
+      <a class="btn ghost" href="/gr-everyday/" data-app-page data-t="aboutApp">앱 알아보기</a>
     </p>
-    <p class="gr-note">앱에서는 저장된 레시피 → … → 레시피 추가 → 코드·링크·QR로 가져오기에 코드를 입력해도 돼요.</p>
+    <p class="gr-note" data-t="codeHowTo">앱에서는 저장된 레시피 → … → 레시피 추가 → 코드·링크·QR로 가져오기에 코드를 입력해도 돼요.</p>
   </article>
 </Base>
 
 <script>
+  import { chosenLang, paint, type RecipeLang, type UIKey } from '../../../scripts/gr-recipe-lang';
+
   const SUPABASE = 'https://rqnwgvfirkfxfawnawzf.supabase.co';
   const KEY = 'sb_publishable_cojeybLAeRjdBFHpVxQtRA_Rz3BYm8_';
   const $ = (id: string) => document.getElementById(id)!;
 
+  let lang: RecipeLang = chosenLang();
+
+  /// The status line's message; the language switch redraws it. A code once read replaces
+  /// the title, which is then no longer translated.
+  function set(status: UIKey, code?: string) {
+    $('status').dataset.t = status;
+    if (code) { delete $('code').dataset.t; $('code').textContent = code; }
+    paint(lang, redraw);
+  }
+
+  function redraw(l: RecipeLang) { lang = l; paint(lang, redraw); }
+
   async function show() {
+    $('code').dataset.t = 'codeTitle';
+    paint(lang, redraw);
     const raw = decodeURIComponent(location.hash.slice(1)).toUpperCase().replace(/[^A-Z0-9]/g, '');
     const code = raw.length === 8 && raw.startsWith('GR') ? raw.slice(2) : raw;
     if (!/^[2-9A-HJKMNP-Z]{6}$/.test(code)) {
-      $('status').textContent = '코드가 올바르지 않아요. GR- 뒤 여섯 글자인지 확인해 주세요.';
+      set('badCode');
       return;
     }
-    $('code').textContent = `GR-${code}`;
+    set('loading', `GR-${code}`);
     (document.getElementById('open-app') as HTMLAnchorElement).href = `greveryday://code#GR-${code}`;
     try {
       const res = await fetch(`${SUPABASE}/rest/v1/rpc/recipe_code_get`, {
@@ -42,12 +62,14 @@ import gr from '../../../data/gr-everyday.json';
       });
       const payload = res.ok ? await res.json() : null;
       if (typeof payload !== 'string' || !/^[A-Za-z0-9_-]+$/.test(payload)) {
-        $('status').textContent = '이 코드의 레시피를 찾지 못했어요. 글자를 다시 확인해 주세요.';
+        set('noCode');
         return;
       }
+      // The recipe page picks the same language: a choice made here is saved, and with none
+      // both pages go by the browser's languages.
       location.replace(`/gr-everyday/r/#${payload}`);
     } catch {
-      $('status').textContent = '레시피를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.';
+      set('offline');
     }
   }
   show();
@@ -55,8 +77,13 @@ import gr from '../../../data/gr-everyday.json';
 </script>
 
 <style>
-  .gr-recipe { word-break: keep-all; }
-  .kicker { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+  .gr-recipe:lang(ko) { word-break: keep-all; }
+  .kicker { color: var(--muted); font-size: 0.9rem; margin: 0; }
+  .gr-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  /* The switch's buttons are added by the script. */
+  .gr-langs { display: flex; gap: 10px; font-size: 0.85rem; }
+  .gr-langs :global(button) { background: none; border: 0; padding: 0; font: inherit; color: var(--muted); cursor: pointer; }
+  .gr-langs :global(button[aria-current='true']) { color: var(--fg); font-weight: 600; }
   #code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.04em; }
   .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .btn.ghost { background: transparent; border: 1px solid var(--line); }
