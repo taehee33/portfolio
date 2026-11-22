@@ -1,4 +1,27 @@
 ---
-import GrEverydayPage from '../../components/GrEverydayPage.astro';
+// /gr-everyday/: the App Store's support URL. Sends the visitor to the page in their
+// browser's language (/gr-everyday/ko/ or /gr-everyday/en/), with plain links as a fallback.
+import Base from '../../layouts/Base.astro';
+import gr from '../../data/gr-everyday.json';
 ---
-<GrEverydayPage page="support" />
+<Base lang="ko" title={`${gr.app} 지원 · Support`} alternates={{ ko: '/gr-everyday/ko/', en: '/gr-everyday/en/' }}>
+  <script is:inline>
+    (function () {
+      var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en']);
+      var pick = 'en';
+      for (var i = 0; i < langs.length; i++) {
+        var l = String(langs[i]).toLowerCase();
+        if (l.indexOf('ko') === 0) { pick = 'ko'; break; }
+        if (l.indexOf('en') === 0) { pick = 'en'; break; }
+      }
+      location.replace('/gr-everyday/' + pick + '/' + location.hash);
+    })();
+  </script>
+  <article class="project">
+    <h1>{gr.app}</h1>
+    <ul>
+      <li><a href="/gr-everyday/ko/" hreflang="ko" lang="ko">한국어</a></li>
+      <li><a href="/gr-everyday/en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+  </article>
+</Base>

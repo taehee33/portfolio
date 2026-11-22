@@ -1,6 +1,6 @@
 ---
 // GR Everyday support pages (App Store support and privacy policy URLs).
-// Korean at /gr-everyday/…, English at /en/gr-everyday/…. The text comes from the app: src/data/gr-everyday.json is exported from the GR repo's
+// /gr-everyday/ko/…, /gr-everyday/en/… (src/pages/gr-everyday/[lang]/). The text comes from the app: src/data/gr-everyday.json is exported from the GR repo's
 // Sources/Shared/AboutView.swift by scripts/legal-pages.py. Edit it there, not here.
 import Base from '../layouts/Base.astro';
 import gr from '../data/gr-everyday.json';
@@ -13,14 +13,10 @@ const { page, lang = 'ko' } = Astro.props;
 const en = lang === 'en';
 const doc = en ? gr.en : gr;
 const operator = en ? gr.operatorEn : gr.operator;
-const paths = (prefix: string) => ({
-  support: `${prefix}/gr-everyday/`,
-  privacy: `${prefix}/gr-everyday/privacy/`,
-  terms: `${prefix}/gr-everyday/terms/`,
-});
-const ko = paths('');
-const enPaths = paths('/en');
-const here = en ? enPaths : ko;
+/// Every language's page at /gr-everyday/<lang>/…; /gr-everyday/ picks one by the browser.
+const pageLangs = { ko: '한국어', en: 'English' } as const;
+const path = (l: string, p: Props['page']) => `/gr-everyday/${l}/${p === 'support' ? '' : `${p}/`}`;
+const here = { support: path(lang, 'support'), privacy: path(lang, 'privacy'), terms: path(lang, 'terms') };
 const words = en
   ? {
       support: 'Support', privacy: 'Privacy Policy', terms: 'Terms of Use',
@@ -58,13 +54,20 @@ const sections = page === 'privacy' ? doc.privacy : page === 'terms' ? doc.terms
   lang={lang}
   title={page === 'support' ? title : `${gr.app} ${title}`}
   description={description}
-  alternates={{ ko: ko[page], en: enPaths[page] }}
+  alternates={{ ko: path('ko', page), en: path('en', page) }}
 >
-  <nav class="gr-tabs" aria-label={gr.app}>
-    {nav.map(([key, label, href]) => (
-      <a href={href} aria-current={key === page ? 'page' : undefined}>{label}</a>
-    ))}
-  </nav>
+  <div class="gr-bar">
+    <nav class="gr-tabs" aria-label={gr.app}>
+      {nav.map(([key, label, href]) => (
+        <a href={href} aria-current={key === page ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+    <nav class="gr-langs" aria-label={en ? 'Language' : '언어'}>
+      {Object.entries(pageLangs).map(([l, label]) => (
+        <a href={path(l, page)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{label}</a>
+      ))}
+    </nav>
+  </div>
   <article class="project gr-doc">
     <h1>{title}</h1>
     {page === 'support' ? (
@@ -98,7 +101,11 @@ const sections = page === 'privacy' ? doc.privacy : page === 'terms' ? doc.terms
 </Base>
 
 <style>
-  .gr-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 20px; }
+  .gr-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin: 8px 0 20px; }
+  .gr-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gr-langs { display: flex; gap: 10px; font-size: 0.85rem; }
+  .gr-langs a { color: var(--muted); text-decoration: none; }
+  .gr-langs a[aria-current='true'] { color: var(--fg); font-weight: 600; }
   .gr-tabs a {
     text-decoration: none; font-size: 0.9rem; padding: 4px 12px; border-radius: 999px;
     border: 1px solid var(--line); color: var(--muted);

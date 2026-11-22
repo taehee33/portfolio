@@ -1,0 +1,9 @@
+---
+import GrEverydayPage from '../../../../components/GrEverydayPage.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ko' } }, { params: { lang: 'en' } }];
+}
+const { lang } = Astro.params as { lang: 'ko' | 'en' };
+---
+<GrEverydayPage page="terms" lang={lang} />

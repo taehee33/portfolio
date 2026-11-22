@@ -2,7 +2,39 @@
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",
-      "headers": [{ "key": "Content-Type", "value": "application/json" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/gr-everyday/privacy",
+      "destination": "/gr-everyday/ko/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/gr-everyday/privacy/",
+      "destination": "/gr-everyday/ko/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/gr-everyday/terms",
+      "destination": "/gr-everyday/ko/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/gr-everyday/terms/",
+      "destination": "/gr-everyday/ko/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/en/gr-everyday/:path*",
+      "destination": "/gr-everyday/en/:path*",
+      "permanent": true
     }
   ]
 }
