@@ -14,6 +14,8 @@ const projects = defineCollection({
     store: z.string().url().optional(),
     download: z.string().url().optional(),
     cover: z.string().optional(),
+    // 카드가 프로젝트 상세 페이지 대신 이 주소로 바로 가요(예: /gr-everyday/).
+    href: z.string().optional(),
     status: z.string().optional(),
     // 타사 IP를 쓰는 팬 프로젝트는 후원 버튼을 숨겨요.
     thirdPartyIP: z.boolean().default(false),

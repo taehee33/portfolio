@@ -17,7 +17,7 @@ const alternates = { ko: localePath('ko'), en: localePath('en') };
   <ul class="cards">
     {projects.map((p) => (
       <li>
-        <a class="card" href={localePath(lang, `/projects/${p.id.split('/').slice(1).join('/')}/`)}>
+        <a class="card" href={p.data.href ?? localePath(lang, `/projects/${p.id.split('/').slice(1).join('/')}/`)}>
           <h3>{p.data.title}</h3>
           <p>{p.data.summary}</p>
           <ul class="chips">{p.data.stack.slice(0, 4).map((x) => <li>{x}</li>)}</ul>

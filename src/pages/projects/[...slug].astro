@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import ProjectPage from '../../components/ProjectPage.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects', (p) => p.id.startsWith('ko/') && !p.data.draft);
+  const projects = await getCollection('projects', (p) => p.id.startsWith('ko/') && !p.data.draft && !p.data.href);
   return projects.map((project) => ({
     params: { slug: project.id.split('/').slice(1).join('/') },
     props: { project },
