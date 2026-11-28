@@ -1,5 +1,5 @@
 ---
-// GR Everyday recipe code link: https://hth33-dev.vercel.app/gr-everyday/c/#GR-7KQ3XM.
+// GR Everyday recipe code link: https://hth33-dev.vercel.app/gr-everyday/c/#GR-7KQ3XM (6) or #GR-7KQ3XMAB (8).
 // With the app installed the link opens in the app (Universal Link). Without it, this page
 // looks the code up (Supabase recipe_code_get, the same publishable key the app ships) and
 // sends the browser on to the recipe page, /gr-everyday/r/#<data>, which lists the settings.
@@ -52,8 +52,10 @@ import gr from '../../../data/gr-everyday.json';
     $('code').dataset.t = 'codeTitle';
     paint(lang, redraw);
     const raw = decodeURIComponent(location.hash.slice(1)).toUpperCase().replace(/[^A-Z0-9]/g, '');
-    const code = raw.length === 8 && raw.startsWith('GR') ? raw.slice(2) : raw;
-    if (!/^[2-9A-HJKMNP-Z]{6}$/.test(code)) {
+    // Codes are 6 characters (before 2026-11-24) or 8 (never starting with GR), with or without
+    // "GR-": GR + 6 is an old code with its prefix, GR + 8 a new one.
+    const code = raw.startsWith('GR') && (raw.length === 8 || raw.length === 10) ? raw.slice(2) : raw;
+    if (!/^([2-9A-HJKMNP-Z]{6}|[2-9A-HJKMNP-Z]{8})$/.test(code)) {
       set('badCode');
       return;
     }

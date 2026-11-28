@@ -3,7 +3,7 @@
   "operator": "GR Everyday 개발자",
   "operatorEn": "GR Everyday Developer",
   "email": "hth33.dev@gmail.com",
-  "effectiveDate": "2026-11-22",
+  "effectiveDate": "2026-11-28",
   "guide": [
     {
       "title": "처음 연결하기",
@@ -45,15 +45,15 @@
     },
     {
       "title": "순간들에서 수집하는 정보",
-      "body": "순간들은 로그인한 경우에만 쓸 수 있어요. 로그인할 때 Apple 또는 Google이 알려 주는 계정 식별자와 이메일 주소(Apple의 '나의 이메일 가리기'를 고르면 대체 주소)를 받아요. 이용하면서 직접 입력하거나 올린 정보도 보관해요: 사용자명, 표시 이름, 프로필 사진, 소개용 링크(Instagram, 웹사이트), 쓰는 카메라, 올린 사진(공유용으로 줄인 사본과 미리보기), 설명, 공유하기로 고른 촬영 정보(카메라, 노출, 이미지 컨트롤, 촬영 날짜), 공유하기로 고른 촬영 위치(좌표와 지역 이름), 댓글, 좋아요, 팔로우, 저장한 레시피, 만든 레시피 코드(코드와 그 레시피 설정), 레시피 링크에 함께 보내기로 고른 샘플 사진, 신고와 차단, 업로드·공유 기록. 올리는 사진 파일에서는 EXIF 등 메타데이터를 지우고, 촬영 정보와 위치는 사진마다 공유를 고른 것만 저장해요."
+      "body": "순간들은 로그인한 경우에만 쓸 수 있어요. 로그인할 때 Apple 또는 Google이 알려 주는 계정 식별자와 이메일 주소(Apple의 '나의 이메일 가리기'를 고르면 대체 주소)를 받아요. 이용하면서 직접 입력하거나 올린 정보도 보관해요: 사용자명, 표시 이름, 프로필 사진, 소개용 링크(Instagram, 웹사이트), 쓰는 카메라, 올린 사진(공유용으로 줄인 사본과 미리보기), 설명, 공유하기로 고른 촬영 정보(카메라, 노출, 이미지 컨트롤, 촬영 날짜), 공유하기로 고른 촬영 위치(좌표와 지역 이름), 댓글, 좋아요, 팔로우, 저장한 레시피, 만든 레시피 코드(코드와 그 레시피 설정), 레시피 링크에 함께 보내기로 고른 샘플 사진, 신고와 차단, 숨겨진 사진에 대한 이의 제기(남긴 메시지 포함), 알림을 켠 기기의 알림 토큰과 앱 언어, 업로드·공유 기록. 올리는 사진 파일에서는 EXIF 등 메타데이터를 지우고, 촬영 정보와 위치는 사진마다 공유를 고른 것만 저장해요."
     },
     {
       "title": "이용 목적과 공개 범위",
-      "body": "계정 확인, 사진 게시와 공유, 댓글·좋아요·팔로우 같은 기능 제공, 업로드 한도 적용, 신고 처리와 이용 제한 등 서비스 운영에만 써요. 사용자명, 표시 이름, 프로필, 순간들에 공유한 사진과 설명·촬영 정보·위치, 댓글은 다른 사용자에게 보여요. 레시피 코드를 만들면 그 코드를 아는 사람은 누구나 레시피 설정을 볼 수 있어요. 레시피 링크나 코드에 샘플 사진을 함께 보내면, 받은 사람은 누구나 그 사진을 볼 수 있어요. 이메일 주소는 다른 사용자에게 보이지 않아요. 광고, 분석, 추적 도구를 쓰지 않고, 개인정보를 팔거나 광고에 쓰지 않아요."
+      "body": "계정 확인, 사진 게시와 공유, 댓글·좋아요·팔로우 같은 기능 제공, 업로드 한도 적용, 신고와 이의 제기 처리, 이용 제한, 알림 보내기 등 서비스 운영에만 써요. 누가 신고했는지는 신고된 사람에게 알리지 않아요. 사용자명, 표시 이름, 프로필, 순간들에 공유한 사진과 설명·촬영 정보·위치, 댓글은 다른 사용자에게 보여요. 레시피 코드를 만들면 그 코드를 아는 사람은 누구나 레시피 설정을 볼 수 있어요. 레시피 링크나 코드에 샘플 사진을 함께 보내면, 받은 사람은 누구나 그 사진을 볼 수 있어요. 이메일 주소는 다른 사용자에게 보이지 않아요. 광고, 분석, 추적 도구를 쓰지 않고, 개인정보를 팔거나 광고에 쓰지 않아요."
     },
     {
       "title": "처리를 맡기는 곳",
-      "body": "순간들의 데이터는 다음 업체의 서비스에 보관하고 처리해요. Supabase Inc.(계정과 게시물 데이터베이스, 서버 위치 대한민국 서울), Cloudflare, Inc.(사진 파일 저장과 전송, 미국 등 Cloudflare 데이터센터), Apple Inc. 및 Google LLC(로그인 확인). 사진을 올리거나 볼 때 인터넷으로 전송되며, 탈퇴하거나 지울 때까지 보관돼요. 국외 이전을 원하지 않으면 순간들을 이용하지 않거나 탈퇴할 수 있고, 카메라 기능은 그대로 쓸 수 있어요."
+      "body": "순간들의 데이터는 다음 업체의 서비스에 보관하고 처리해요. Supabase Inc.(계정과 게시물 데이터베이스, 서버 위치 대한민국 서울), Cloudflare, Inc.(사진 파일 저장과 전송, 미국 등 Cloudflare 데이터센터), Apple Inc.(로그인 확인과 알림 전송), Google LLC(로그인 확인), Resend, Inc.(운영자에게 보내는 신고·이의 제기 알림 메일, 미국). 사진을 올리거나 볼 때 인터넷으로 전송되며, 탈퇴하거나 지울 때까지 보관돼요. 국외 이전을 원하지 않으면 순간들을 이용하지 않거나 탈퇴할 수 있고, 카메라 기능은 그대로 쓸 수 있어요."
     },
     {
       "title": "권한",
@@ -61,7 +61,7 @@
     },
     {
       "title": "보관과 삭제",
-      "body": "기기에 보관한 정보는 설정에서 사진 목록이나 받아 둔 동영상을 지우거나 카메라 정보를 지우면 삭제돼요. 앱을 삭제하면 기기에 보관한 정보는 모두 지워져요(iCloud의 촬영 통계 기록은 위처럼 따로 지워요). 사진 앱이나 저장 폴더에 저장한 사진은 사용자가 직접 관리해요. 순간들에 올린 사진과 댓글은 언제든 직접 지울 수 있고, 설정 › 계정 › 탈퇴를 누르면 계정과 프로필, 올린 사진, 댓글, 좋아요, 팔로우, 레시피 코드와 샘플 사진, 신고·차단 기록이 곧바로 함께 삭제돼요. 업로드를 끝내지 못한 사진은 하루 뒤 자동으로 지워요."
+      "body": "기기에 보관한 정보는 설정에서 사진 목록이나 받아 둔 동영상을 지우거나 카메라 정보를 지우면 삭제돼요. 앱을 삭제하면 기기에 보관한 정보는 모두 지워져요(iCloud의 촬영 통계 기록은 위처럼 따로 지워요). 사진 앱이나 저장 폴더에 저장한 사진은 사용자가 직접 관리해요. 순간들에 올린 사진과 댓글은 언제든 직접 지울 수 있고, 설정 › 계정 › 탈퇴를 누르면 계정과 프로필, 올린 사진, 댓글, 좋아요, 팔로우, 레시피 코드와 샘플 사진, 신고·차단 기록, 이의 제기가 곧바로 함께 삭제돼요. 업로드를 끝내지 못한 사진은 하루 뒤 자동으로 지워요."
     },
     {
       "title": "이용자의 권리",
@@ -103,7 +103,7 @@
     },
     {
       "title": "신고와 차단",
-      "body": "부적절한 사진이나 댓글은 신고하고, 원하지 않는 사용자는 차단할 수 있어요. 차단한 사람의 사진과 댓글은 보이지 않아요. 신고가 들어오면 운영자가 24시간 안에 확인해 문제가 있는 콘텐츠를 지우고 올린 사용자를 제한해요. 신고가 쌓인 콘텐츠는 확인 전에도 모두에게서 숨겨질 수 있어요."
+      "body": "부적절한 사진이나 댓글은 신고하고, 원하지 않는 사용자는 차단할 수 있어요. 차단하면 서로의 사진과 댓글이 보이지 않고, 서로에게 댓글·좋아요·팔로우를 할 수 없어요. 신고가 들어오면 운영자가 24시간 안에 확인해 문제가 있는 콘텐츠를 지우고, 필요하면 올린 사용자를 제한해요. 가입한 지 7일이 지난 사용자의 신고가 쌓이면 그 사진은 확인 전에도 모두에게서 숨겨질 수 있어요. 신고만으로 계정이 제한되지는 않아요. 사진이 숨겨지면 올린 사람에게 알리고, 올린 사람은 숨겨질 때마다 한 번 이의를 제기할 수 있어요. 운영자가 확인해 다시 공개하거나 숨긴 채로 두고 결과를 알려요."
     },
     {
       "title": "책임의 한계",
@@ -157,15 +157,15 @@
       },
       {
         "title": "Information collected in Moments",
-        "body": "Moments is available only when you're signed in. When you sign in, we receive the account identifier and email address provided by Apple or Google (a relay address if you choose Apple's Hide My Email). We also keep what you enter or upload while using it: username, display name, profile photo, profile links (Instagram, website), cameras you use, uploaded photos (reduced copies and previews for sharing), descriptions, the shooting info you chose to share (camera, exposure, image control, capture date), the shooting location you chose to share (coordinates and region name), comments, likes, follows, saved recipes, recipe codes you created (the code and its recipe settings), sample photos you chose to send with a recipe link, reports and blocks, and upload and sharing records. EXIF and other metadata are removed from uploaded photo files, and shooting info and location are stored only for photos where you chose to share them."
+        "body": "Moments is available only when you're signed in. When you sign in, we receive the account identifier and email address provided by Apple or Google (a relay address if you choose Apple's Hide My Email). We also keep what you enter or upload while using it: username, display name, profile photo, profile links (Instagram, website), cameras you use, uploaded photos (reduced copies and previews for sharing), descriptions, the shooting info you chose to share (camera, exposure, image control, capture date), the shooting location you chose to share (coordinates and region name), comments, likes, follows, saved recipes, recipe codes you created (the code and its recipe settings), sample photos you chose to send with a recipe link, reports and blocks, appeals about hidden photos (including any message you leave), the notification token and app language of devices where you turned on notifications, and upload and sharing records. EXIF and other metadata are removed from uploaded photo files, and shooting info and location are stored only for photos where you chose to share them."
       },
       {
         "title": "Purpose and Visibility",
-        "body": "Used only to run the service: verifying accounts, posting and sharing photos, providing features like comments, likes, and follows, applying upload limits, handling reports, and restricting use. Your username, display name, profile, photos shared in Moments with their descriptions, shooting info, and location, and your comments are visible to other users. If you create a recipe code, anyone who knows the code can see its recipe settings. If you send a sample photo with a recipe link or code, anyone who receives it can see that photo. Your email address isn't shown to other users. We don't use advertising, analytics, or tracking tools, and we don't sell personal information or use it for ads."
+        "body": "Used only to run the service: verifying accounts, posting and sharing photos, providing features like comments, likes, and follows, applying upload limits, handling reports and appeals, restricting use, and sending notifications. We never tell anyone who reported them. Your username, display name, profile, photos shared in Moments with their descriptions, shooting info, and location, and your comments are visible to other users. If you create a recipe code, anyone who knows the code can see its recipe settings. If you send a sample photo with a recipe link or code, anyone who receives it can see that photo. Your email address isn't shown to other users. We don't use advertising, analytics, or tracking tools, and we don't sell personal information or use it for ads."
       },
       {
         "title": "Service Providers",
-        "body": "Moments data is stored and processed with these providers: Supabase Inc. (account and post database, servers in Seoul, South Korea), Cloudflare, Inc. (photo file storage and delivery, Cloudflare data centers in the US and elsewhere), and Apple Inc. and Google LLC (sign-in verification). Data is transferred over the internet when you upload or view photos and kept until you delete it or your account. If you don't want data transferred abroad, you can stop using Moments or delete your account and keep using the camera features."
+        "body": "Moments data is stored and processed with these providers: Supabase Inc. (account and post database, servers in Seoul, South Korea), Cloudflare, Inc. (photo file storage and delivery, Cloudflare data centers in the US and elsewhere), Apple Inc. (sign-in verification and notification delivery), Google LLC (sign-in verification), and Resend, Inc. (report and appeal notification emails to the operator, US). Data is transferred over the internet when you upload or view photos and kept until you delete it or your account. If you don't want data transferred abroad, you can stop using Moments or delete your account and keep using the camera features."
       },
       {
         "title": "Permissions",
@@ -173,7 +173,7 @@
       },
       {
         "title": "Retention and Deletion",
-        "body": "Information stored on your device is deleted when you clear the photo list or downloaded videos, or remove camera info, in Settings. Deleting the app removes everything stored on the device (iCloud shooting stats records are deleted separately as described above). Photos saved to Photos or a save folder are yours to manage. You can delete photos and comments you posted in Moments at any time, and Settings › Account › Delete Account immediately deletes your account, profile, posted photos, comments, likes, follows, recipe codes and sample photos, and report and block records. Photos whose upload didn't finish are deleted automatically after a day."
+        "body": "Information stored on your device is deleted when you clear the photo list or downloaded videos, or remove camera info, in Settings. Deleting the app removes everything stored on the device (iCloud shooting stats records are deleted separately as described above). Photos saved to Photos or a save folder are yours to manage. You can delete photos and comments you posted in Moments at any time, and Settings › Account › Delete Account immediately deletes your account, profile, posted photos, comments, likes, follows, recipe codes and sample photos, report and block records, and appeals. Photos whose upload didn't finish are deleted automatically after a day."
       },
       {
         "title": "Your Rights",
@@ -215,7 +215,7 @@
       },
       {
         "title": "Reporting and Blocking",
-        "body": "You can report inappropriate photos or comments and block users you don't want to see. Photos and comments from people you block are hidden. When a report comes in, the operator reviews it within 24 hours, removes offending content, and restricts the user who posted it. Content with many reports may be hidden from everyone even before review."
+        "body": "You can report inappropriate photos or comments and block users you don't want to see. When you block someone, you can't see each other's photos or comments, and neither of you can comment on, like, or follow the other. When a report comes in, the operator reviews it within 24 hours, removes offending content, and restricts the user who posted it if needed. A photo reported by enough users whose accounts are at least 7 days old may be hidden from everyone even before review. Reports alone never restrict an account. When a photo is hidden, its owner is told and can appeal once each time it is hidden; the operator reviews it, makes it visible again or keeps it hidden, and lets the owner know."
       },
       {
         "title": "Limitation of Liability",
@@ -270,15 +270,15 @@
       },
       {
         "title": "モーメントで収集する情報",
-        "body": "モーメントはサインインしている場合にのみ使えます。サインインの際、AppleまたはGoogleが提供するアカウント識別子とメールアドレス(Appleの「メールを非公開」を選んだ場合は代替アドレス)を受け取ります。利用中にご自身で入力またはアップロードした情報も保管します: ユーザー名、表示名、プロフィール写真、紹介用リンク(Instagram、Webサイト)、使っているカメラ、アップロードした写真(共有用に縮小したコピーとプレビュー)、説明、共有を選んだ撮影情報(カメラ、露出、イメージコントロール、撮影日)、共有を選んだ撮影場所(座標と地域名)、コメント、いいね、フォロー、保存したレシピ、作成したレシピコード(コードとそのレシピ設定)、レシピリンクと一緒に送ることを選んだサンプル写真、報告とブロック、アップロード・共有の記録。アップロードする写真ファイルからはEXIFなどのメタデータを削除し、撮影情報と位置は写真ごとに共有を選んだものだけを保存します。"
+        "body": "モーメントはサインインしている場合にのみ使えます。サインインの際、AppleまたはGoogleが提供するアカウント識別子とメールアドレス(Appleの「メールを非公開」を選んだ場合は代替アドレス)を受け取ります。利用中にご自身で入力またはアップロードした情報も保管します: ユーザー名、表示名、プロフィール写真、紹介用リンク(Instagram、Webサイト)、使っているカメラ、アップロードした写真(共有用に縮小したコピーとプレビュー)、説明、共有を選んだ撮影情報(カメラ、露出、イメージコントロール、撮影日)、共有を選んだ撮影場所(座標と地域名)、コメント、いいね、フォロー、保存したレシピ、作成したレシピコード(コードとそのレシピ設定)、レシピリンクと一緒に送ることを選んだサンプル写真、報告とブロック、非表示になった写真への異議申し立て(残したメッセージを含む)、通知をオンにしたデバイスの通知トークンとアプリの言語、アップロード・共有の記録。アップロードする写真ファイルからはEXIFなどのメタデータを削除し、撮影情報と位置は写真ごとに共有を選んだものだけを保存します。"
       },
       {
         "title": "利用目的と公開範囲",
-        "body": "アカウントの確認、写真の投稿と共有、コメント・いいね・フォローなどの機能の提供、アップロード上限の適用、報告の処理と利用制限など、サービスの運営にのみ使います。ユーザー名、表示名、プロフィール、モーメントに共有した写真とその説明・撮影情報・位置、コメントはほかのユーザーに表示されます。レシピコードを作成すると、そのコードを知っている人は誰でもレシピの設定を見られます。レシピのリンクやコードにサンプル写真を付けて送ると、受け取った人は誰でもその写真を見られます。メールアドレスはほかのユーザーには表示されません。広告、分析、トラッキングのツールは使わず、個人情報を販売したり広告に使ったりしません。"
+        "body": "アカウントの確認、写真の投稿と共有、コメント・いいね・フォローなどの機能の提供、アップロード上限の適用、報告と異議申し立ての処理、利用制限、通知の送信など、サービスの運営にのみ使います。誰が報告したかは、報告された人に知らせません。ユーザー名、表示名、プロフィール、モーメントに共有した写真とその説明・撮影情報・位置、コメントはほかのユーザーに表示されます。レシピコードを作成すると、そのコードを知っている人は誰でもレシピの設定を見られます。レシピのリンクやコードにサンプル写真を付けて送ると、受け取った人は誰でもその写真を見られます。メールアドレスはほかのユーザーには表示されません。広告、分析、トラッキングのツールは使わず、個人情報を販売したり広告に使ったりしません。"
       },
       {
         "title": "処理の委託先",
-        "body": "モーメントのデータは、次の事業者のサービスで保管・処理します。Supabase Inc.(アカウントと投稿のデータベース、サーバーの所在地は大韓民国ソウル)、Cloudflare, Inc.(写真ファイルの保存と配信、米国などのCloudflareデータセンター)、Apple Inc.およびGoogle LLC(サインインの確認)。写真をアップロードしたり閲覧したりするときにインターネット経由で転送され、退会または削除するまで保管されます。国外への移転を望まない場合は、モーメントを利用しないか退会することができ、カメラ機能はそのまま使えます。"
+        "body": "モーメントのデータは、次の事業者のサービスで保管・処理します。Supabase Inc.(アカウントと投稿のデータベース、サーバーの所在地は大韓民国ソウル)、Cloudflare, Inc.(写真ファイルの保存と配信、米国などのCloudflareデータセンター)、Apple Inc.(サインインの確認と通知の配信)、Google LLC(サインインの確認)、Resend, Inc.(運営者に送る報告・異議申し立ての通知メール、米国)。写真をアップロードしたり閲覧したりするときにインターネット経由で転送され、退会または削除するまで保管されます。国外への移転を望まない場合は、モーメントを利用しないか退会することができ、カメラ機能はそのまま使えます。"
       },
       {
         "title": "許可",
@@ -286,7 +286,7 @@
       },
       {
         "title": "保管と削除",
-        "body": "デバイスに保管した情報は、設定で写真リストや受信した動画を消去したり、カメラ情報を削除したりすると削除されます。アプリを削除すると、デバイスに保管した情報はすべて消去されます(iCloudの撮影統計の記録は上記のとおり別途削除します)。写真アプリや保存フォルダに保存した写真はユーザーご自身で管理します。モーメントに投稿した写真とコメントはいつでもご自身で削除でき、設定 › アカウント › 退会 を押すと、アカウントとプロフィール、投稿した写真、コメント、いいね、フォロー、レシピコードとサンプル写真、報告・ブロックの記録がすぐに一緒に削除されます。アップロードが完了しなかった写真は1日後に自動で削除します。"
+        "body": "デバイスに保管した情報は、設定で写真リストや受信した動画を消去したり、カメラ情報を削除したりすると削除されます。アプリを削除すると、デバイスに保管した情報はすべて消去されます(iCloudの撮影統計の記録は上記のとおり別途削除します)。写真アプリや保存フォルダに保存した写真はユーザーご自身で管理します。モーメントに投稿した写真とコメントはいつでもご自身で削除でき、設定 › アカウント › 退会 を押すと、アカウントとプロフィール、投稿した写真、コメント、いいね、フォロー、レシピコードとサンプル写真、報告・ブロックの記録、異議申し立てがすぐに一緒に削除されます。アップロードが完了しなかった写真は1日後に自動で削除します。"
       },
       {
         "title": "利用者の権利",
@@ -328,7 +328,7 @@
       },
       {
         "title": "報告とブロック",
-        "body": "不適切な写真やコメントは報告でき、見たくないユーザーはブロックできます。ブロックした人の写真とコメントは表示されません。報告があると、運営者が24時間以内に確認して問題のあるコンテンツを削除し、投稿したユーザーを制限します。報告が多いコンテンツは、確認前でも全員から非表示になることがあります。"
+        "body": "不適切な写真やコメントは報告でき、見たくないユーザーはブロックできます。ブロックすると、お互いの写真とコメントが表示されなくなり、お互いにコメント・いいね・フォローができなくなります。報告があると、運営者が24時間以内に確認して問題のあるコンテンツを削除し、必要に応じて投稿したユーザーを制限します。登録から7日以上たったユーザーの報告が重なった写真は、確認前でも全員から非表示になることがあります。報告だけでアカウントが制限されることはありません。写真が非表示になると投稿した人に知らせ、投稿した人は非表示になるたびに1回異議を申し立てられます。運営者が確認し、再公開するか非表示のままにするかを決めて結果を知らせます。"
       },
       {
         "title": "責任の制限",
